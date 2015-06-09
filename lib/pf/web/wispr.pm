@@ -25,6 +25,7 @@ use Log::Log4perl;
 use Template;
 
 use pf::authentication;
+use pf::Authentication::constants;
 use pf::config;
 use pf::iplog;
 use pf::node;
@@ -107,6 +108,7 @@ sub handler {
 
     # obtain node information provided by authentication module. We need to get the role (category here)
     # as web_node_register() might not work if we've reached the limit
+    $params->{rule_class} = $Rules::AUTH;
     my $value = &pf::authentication::match($source_id, $params, $Actions::SET_ROLE);
 
     $logger->warn("Got role $value for username $pid");

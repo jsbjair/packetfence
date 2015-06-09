@@ -278,7 +278,7 @@ sub validate_sponsor {
 
     # validate that this email can sponsor network accesses
     my $value = &pf::authentication::match( &pf::authentication::getInternalAuthenticationSources(),
-                                            { email => $cgi->param('sponsor_email') },
+                                            { email => $cgi->param('sponsor_email'), rule_class => $Rules::ADMIN },
                                             $Actions::MARK_AS_SPONSOR );
 
     if (defined $value) {
